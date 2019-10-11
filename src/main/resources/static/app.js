@@ -28,7 +28,7 @@ var app = (function () {
     };
 
 
-    var connectAndSubscribe = function () {
+    var connectAndSubscribe = function (callback) {
         console.info('Connecting to WS...');
         var socket = new SockJS('/stompendpoint');
         stompClient = Stomp.over(socket);
@@ -38,7 +38,8 @@ var app = (function () {
             console.log('Connected: ' + frame);
             stompClient.subscribe("/topic/newpoint", function(eventbody) {
                 var theObject = JSON.parse(eventbody.body);
-                alert("New Point: " + theObject.x + " " + theObject.y);
+                //alert("New Point: " + theObject.x + " " + theObject.y);
+                callback(new Point(theObject.x, theObject.y));
             });
         });
 
@@ -52,13 +53,13 @@ var app = (function () {
             var can = document.getElementById("canvas");
             
             //websocket connection
-            connectAndSubscribe(alert);
+            connectAndSubscribe(addPointToCanvas);
         },
 
         publishPoint: function(px,py){
             var pt=new Point(px,py);
             console.info("publishing point at "+pt);
-            addPointToCanvas(pt);
+            //addPointToCanvas(pt);
             //enviando un objeto creado a partir de una clase
             stompClient.send("/topic/newpoint", {}, JSON.stringify(pt)); 
             //publicar el evento
