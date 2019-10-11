@@ -52,7 +52,7 @@ var app = (function () {
             var can = document.getElementById("canvas");
             
             //websocket connection
-            connectAndSubscribe();
+            connectAndSubscribe(alert);
         },
 
         publishPoint: function(px,py){
