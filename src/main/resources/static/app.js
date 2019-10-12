@@ -8,6 +8,7 @@ var app = (function () {
     }
     
     var stompClient = null;
+    var id ;
 
     var addPointToCanvas = function (point) {        
         var canvas = document.getElementById("canvas");
@@ -50,13 +51,22 @@ var app = (function () {
     return {
 
         init: function () {
+
+            id = $("#nDibujo").val();
             var can = document.getElementById("canvas");
+
+            can.addEventListener("pointerdown", function(evento) {
+                var position = getMousePosition(evento);
+                app.publishPoint(position.x, position.y);
+              });
+
             
             //websocket connection
             connectAndSubscribe(addPointToCanvas);
         },
 
         publishPoint: function(px,py){
+            console.info(id);
             var pt=new Point(px,py);
             console.info("publishing point at "+pt);
             //addPointToCanvas(pt);

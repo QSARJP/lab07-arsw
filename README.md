@@ -55,3 +55,33 @@ segundo punto en la pestaña 2
 replica en la pestaña 1
 
 ![](img/partedos6.png)
+
+
+# Tercera parte
+
+Primero debemos adiccionar el nuevo campo
+
+![](img/partetres0.png)
+
+Y en init agregamos la inicalizacion de esta variable
+
+![](img/partetres1.png)
+
+Danadonos como resultado:
+Primer dibujo en la primera pesatña inicializandose con 1
+
+![](img/partetres2.png)
+
+en la segunda pestaña inicializandose con 2 recibe los dibujos de 1
+
+![](img/partetres3.png)
+
+ahora realizamos un dibujo en 2 
+
+![](img/partetres4.png)
+
+y se realiza en 1
+
+![](img/partetres5.png)
+
+
